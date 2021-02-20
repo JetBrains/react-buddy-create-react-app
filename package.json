@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "build": "cd packages/react-scripts && node bin/react-scripts.js build",
+    "build:dev-mode": "cd packages/react-scripts && cross-env IS_DEVMODE=true node bin/react-scripts.js build",
     "changelog": "lerna-changelog",
     "create-react-app": "node tasks/cra.js",
     "e2e": "tasks/e2e-simple.sh",
@@ -13,6 +14,7 @@
     "postinstall": "npm run build:prod -w react-error-overlay",
     "publish": "tasks/publish.sh",
     "start": "cd packages/react-scripts && node bin/react-scripts.js start",
+    "start:dev-mode": "cd packages/react-scripts && cross-env IS_DEVMODE=true node bin/react-scripts.js start",
     "screencast": "node ./tasks/screencast.js",
     "screencast:error": "svg-term --cast jyu19xGl88FQ3poMY8Hbmfw8y --out screencast-error.svg --window --at 12000 --no-cursor",
     "alex": "alex .",
