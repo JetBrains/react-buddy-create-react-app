@@ -1,6 +1,6 @@
 {
-  "name": "react-scripts",
-  "version": "4.0.2",
+  "name": "@haulmont/react-scripts",
+  "version": "4.0.2-aplha.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
