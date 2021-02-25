@@ -18,11 +18,7 @@ module.exports = function (webpackEnv) {
       'dist',
       'devtools-no-server.js'
     );
-    const pathToNodeModules = join(__dirname, '..', '..');
-    const pathToReactDevtoolsScript = join(
-      pathToNodeModules,
-      pathToReactDevtools
-    );
+    const pathToReactDevtoolsScript = require.resolve(pathToReactDevtools);
 
     plugins.push(
       new CopyWebpackPlugin({
