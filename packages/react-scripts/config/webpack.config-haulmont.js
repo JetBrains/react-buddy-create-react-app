@@ -12,14 +12,9 @@ module.exports = function (webpackEnv) {
   htmlWebpackPlugin.options.isDevMode = isDevMode;
 
   if (isDevMode) {
-    const pathToReactDevtools = join(
-      '@haulmont',
-      'react-ide-devtools',
-      'dist',
-      'devtools-no-server.js'
+    const pathToReactDevtoolsScript = require.resolve(
+      '@haulmont/react-ide-devtools'
     );
-    const pathToReactDevtoolsScript = require.resolve(pathToReactDevtools);
-
     plugins.push(
       new CopyWebpackPlugin({
         patterns: [
