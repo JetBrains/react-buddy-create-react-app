@@ -1,17 +1,16 @@
-const { join } = require('path');
 const webpackConfig = require('./webpack.config');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const isDevMode = process.env.IS_DEVMODE === 'true';
+const isReactIdeDevmode = process.env.REACT_IDE_DEVMODE === 'true';
 
 module.exports = function (webpackEnv) {
   const craConfig = webpackConfig(webpackEnv);
   const { plugins } = craConfig;
   const [htmlWebpackPlugin] = plugins;
 
-  htmlWebpackPlugin.options.isDevMode = isDevMode;
+  htmlWebpackPlugin.options.isReactIdeDevmode = isReactIdeDevmode;
 
-  if (isDevMode) {
+  if (isReactIdeDevmode) {
     const pathToReactDevtoolsScript = require.resolve(
       '@haulmont/react-ide-devtools'
     );
