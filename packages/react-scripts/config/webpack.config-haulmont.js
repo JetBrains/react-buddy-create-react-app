@@ -1,7 +1,7 @@
 const webpackConfig = require('./webpack.config');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const isReactIdeDevmode = process.env.REACT_IDE_DEVMODE === 'true';
+const isReactIdeDevmode = process.env.REACT_APP_IDE_DEVMODE === 'true';
 
 module.exports = function (webpackEnv) {
   const craConfig = webpackConfig(webpackEnv);
