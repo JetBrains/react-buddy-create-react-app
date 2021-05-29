@@ -22,10 +22,10 @@ const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/sockjs-node'
 const sockPort = process.env.WDS_SOCKET_PORT;
-const enableJmixServerMock = process.env.JMIX_SERVER_MOCK;
+const jmixMockGraphql = process.env.JMIX_SERVER_MOCK_GRAPHQL;
 
 module.exports = function (proxy, allowedHost) {
-  if (enableJmixServerMock) {
+  if (jmixMockGraphql) {
     proxy = undefined;
   }
   return {
@@ -123,8 +123,8 @@ module.exports = function (proxy, allowedHost) {
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware());
 
-      if (enableJmixServerMock) {
-        jmixServerMock.createServer("schema.graphql").then(({expressApp: mockingApp}) => {
+      if (jmixMockGraphql) {
+        jmixServerMock.createServer(jmixMockGraphql).then(({expressApp: mockingApp}) => {
           app.use("/", mockingApp)
         });
       }
