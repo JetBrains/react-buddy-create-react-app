@@ -21,7 +21,7 @@ const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
-const enableJmixServerMock = process.env.JMIX_SERVER_MOCK;
+const jmixMockGraphql = process.env.JMIX_SERVER_MOCK_GRAPHQL;
 
 module.exports = function (proxy, allowedHost) {
   const disableFirewall =
@@ -117,8 +117,8 @@ module.exports = function (proxy, allowedHost) {
       // This lets us fetch source contents from webpack for the error overlay
       devServer.app.use(evalSourceMapMiddleware(devServer));
 
-      if (enableJmixServerMock) {
-        jmixServerMock.createServer("schema.graphql").then(({expressApp: mockingApp}) => {
+      if (jmixMockGraphql) {
+        jmixServerMock.createServer(jmixMockGraphql).then(({expressApp: mockingApp}) => {
           app.use("/", mockingApp)
         });
       }
