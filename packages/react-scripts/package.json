@@ -1,6 +1,6 @@
 {
   "name": "@haulmont/react-scripts",
-  "version": "4.0.2-alpha.7",
+  "version": "4.0.2-alpha.8",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
   "types": "./lib/react-app.d.ts",
   "dependencies": {
     "@babel/core": "7.12.3",
-    "@haulmont/react-ide-devtools": "0.2.0-alpha.6",
+    "@haulmont/react-ide-devtools": "^0.2.0-alpha.6",
+    "@haulmont/jmix-server-mock": "^1.0.0-next.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
