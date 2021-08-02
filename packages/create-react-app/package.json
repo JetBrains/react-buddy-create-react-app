@@ -1,6 +1,6 @@
 {
-  "name": "create-react-app",
-  "version": "4.0.2",
+  "name": "@haulmont/create-react-app",
+  "version": "1.0.0",
   "keywords": [
     "react"
   ],
@@ -23,7 +23,7 @@
     "yarn.lock.cached"
   ],
   "bin": {
-    "create-react-app": "./index.js"
+    "haulmont-cra": "./index.js"
   },
   "scripts": {
     "test": "cross-env FORCE_COLOR=true jest"
