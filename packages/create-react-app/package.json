@@ -23,7 +23,7 @@
     "yarn.lock.cached"
   ],
   "bin": {
-    "haulmont-cra": "./index.js"
+    "haulmont-create-react-app": "./index.js"
   },
   "scripts": {
     "test": "cross-env FORCE_COLOR=true jest"
