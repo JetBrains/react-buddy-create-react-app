@@ -22,7 +22,7 @@
     "createReactApp.js"
   ],
   "bin": {
-    "create-react-app": "./index.js"
+    "haulmont-cra": "./index.js"
   },
   "scripts": {
     "test": "cross-env FORCE_COLOR=true jest"

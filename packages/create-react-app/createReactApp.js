@@ -161,8 +161,8 @@ function init() {
             'Firefox',
             'Safari',
           ],
-          npmPackages: ['react', 'react-dom', 'react-scripts'],
-          npmGlobalPackages: ['create-react-app'],
+          npmPackages: ['react', 'react-dom', '@haulmont/react-scripts', '@haulmont/react-ide-toolbox'],
+          npmGlobalPackages: ['@haulmont/create-react-app'],
         },
         {
           duplicates: true,
@@ -188,6 +188,14 @@ function init() {
     );
     process.exit(1);
   }
+  createApp(
+    projectName,
+    program.verbose,
+    program.scriptsVersion,
+    program.template,
+    program.useNpm,
+    program.usePnp
+  );
 
   // We first check the registry directly via the API, and if that fails, we try
   // the slower `npm view [package] version` command.
@@ -414,7 +422,7 @@ function run(
     getInstallPackage(version, originalDirectory),
     getTemplateInstallPackage(template, originalDirectory),
   ]).then(([packageToInstall, templateToInstall]) => {
-    const allDependencies = ['react', 'react-dom', packageToInstall];
+    const allDependencies = ['react', 'react-dom', '@haulmont/react-ide-toolbox', packageToInstall];
 
     console.log('Installing packages. This might take a couple of minutes.');
 
@@ -432,7 +440,7 @@ function run(
       .then(({ isOnline, packageInfo, templateInfo }) => {
         let packageVersion = semver.coerce(packageInfo.version);
 
-        const templatesVersionMinimum = '3.3.0';
+        const templatesVersionMinimum = '1.0.0';
 
         // Assume compatibility if we can't test the version.
         if (!semver.valid(packageVersion)) {
@@ -552,7 +560,7 @@ function run(
 }
 
 function getInstallPackage(version, originalDirectory) {
-  let packageToInstall = 'react-scripts';
+  let packageToInstall = '@haulmont/react-scripts';
   const validSemver = semver.valid(version);
   if (validSemver) {
     packageToInstall += `@${validSemver}`;
@@ -602,7 +610,7 @@ function getInstallPackage(version, originalDirectory) {
 }
 
 function getTemplateInstallPackage(template, originalDirectory) {
-  let templateToInstall = 'cra-template';
+  let templateToInstall = '@haulmont/cra-template';
   if (template) {
     if (template.match(/^file:/)) {
       templateToInstall = `file:${path.resolve(
