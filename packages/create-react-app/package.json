@@ -7,7 +7,7 @@
   "description": "Create React apps with no build configuration.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/Haulmont/create-react-app.git",
     "directory": "packages/create-react-app"
   },
   "license": "MIT",
@@ -15,7 +15,7 @@
     "node": ">=10"
   },
   "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
+    "url": "https://github.com/Haulmont/create-react-app/issues"
   },
   "files": [
     "index.js",
@@ -44,5 +44,8 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "jest": "26.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
