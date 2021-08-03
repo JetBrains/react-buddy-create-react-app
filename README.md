@@ -2,33 +2,27 @@
 
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
 
-Create React apps with no build configuration.
+Create React apps with no build configuration, prepared to work with UI developers tools in IntelliJ IDEA.
 
 - [Creating an App](#creating-an-app) – How to create a new app.
-- [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
+- [Using IntelliJ IDEA tools abilities](#using-intellij-idea-tools-abilities) – How to use IntelliJ IDEA tools abilities.
+- [Modifying existing create-react-app application](#modifying-existing-create-react-app-application) – How to modify existing create-react-app application to use IntelliJ IDEA tools abilities.
 
 Create React App works on macOS, Windows, and Linux.<br>
 If something doesn’t work, please [file an issue](https://github.com/facebook/create-react-app/issues/new).<br>
-If you have questions or need help, please ask in [GitHub Discussions](https://github.com/facebook/create-react-app/discussions).
 
 ## Quick Overview
 
 ```sh
-npx create-react-app my-app
+npx @haulmont/create-react-app my-app
 cd my-app
 npm start
 ```
 
-If you've previously installed `create-react-app` globally via `npm install -g create-react-app`, we recommend you uninstall the package using `npm uninstall -g create-react-app` or `yarn global remove create-react-app` to ensure that npx always uses the latest version.
-
-_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
+If you've previously installed `@haulmont/create-react-app` globally via `npm install -g @haulmont/create-react-app`, we recommend you uninstall the package using `npm uninstall -g @haulmont/create-react-app` or `yarn global remove @haulmont/create-react-app` to ensure that npx always uses the latest version.
 
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
 When you’re ready to deploy to production, create a minified bundle with `npm run build`.
-
-<p align='center'>
-<img src='https://cdn.jsdelivr.net/gh/facebook/create-react-app@27b42ac7efa018f2541153ab30d63180f5fa39e0/screencast.svg' width='600' alt='npm start'>
-</p>
 
 ### Get Started Immediately
 
@@ -46,7 +40,7 @@ To create a new app, you may choose one of the following methods:
 ### npx
 
 ```sh
-npx create-react-app my-app
+npx @haulmont/create-react-app my-app
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) is a package runner tool that comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
@@ -54,18 +48,10 @@ _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
 ### npm
 
 ```sh
-npm init react-app my-app
+npm init @haulmont/react-app my-app
 ```
 
 _`npm init <initializer>` is available in npm 6+_
-
-### Yarn
-
-```sh
-yarn create react-app my-app
-```
-
-_[`yarn create <starter-kit-package>`](https://yarnpkg.com/lang/en/docs/cli/create/) is available in Yarn 0.25+_
 
 It will create a directory called `my-app` inside the current folder.<br>
 Inside that directory, it will generate the initial project structure and install the transitive dependencies:
@@ -128,92 +114,263 @@ The build is minified and the filenames include the hashes.<br>
 
 Your app is ready to be deployed.
 
-## User Guide
+## Using IntelliJ IDEA tools abilities
 
-You can find detailed instructions on using Create React App and many tips in [its documentation](https://facebook.github.io/create-react-app/).
+Package `@haulmont/create-react-app` creates react app, which pre-prepared to work with IntelliJ IDEA tools.
+IntelliJ IDEA tools let you preview and inspect separate components in you react application.
+For using it, you need to do next:
 
-## How to Update to New Versions?
+1. Import [DevSupport](#devsupport-component) component from `@haulmont/react-ide-toolbox` and wrap your root component into DevSupport
+2. Create file with special prepared previews component. This component must content components, which you want to inspect. Every component must be wrapped into [ComponentPreview](#componentpreview-component) (exported from `@haulmont/react-ide-toolbox`) with seted `path` property, in turn, they must be wrapped into uniform component [Previews](#previews-component) (exported from `@haulmont/react-ide-toolbox`).
+3. Set component from step 2 to `ComponentPreviews` property of DevSupport component.
 
-Please refer to the [User Guide](https://facebook.github.io/create-react-app/docs/updating-to-new-releases) for this and other information.
+After that, IntelliJ IDEA tools will be ready to work.
 
-## Philosophy
+### Using example
 
-- **One Dependency:** There is only one build dependency. It uses webpack, Babel, ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
+For using example, let view next:
 
-- **No Configuration Required:** You don't need to configure anything. A reasonably good configuration of both development and production builds is handled for you so you can focus on writing code.
+App component renders `FirstComponent`, `SecondComponent` and `ThirdComponent`:
 
-- **No Lock-In:** You can “eject” to a custom setup at any time. Run a single command, and all the configuration and build dependencies will be moved directly into your project, so you can pick up right where you left off.
+App.js
 
-## What’s Included?
+```
+import './App.css';
+import FirstComponent from "./FirstComponent";
+import SecondComponent from "./SecondComponent";
+import ThirdComponent from "./ThirdComponent";
 
-Your environment will have everything you need to build a modern single-page React app:
+function App() {
+  return (
+    <div className="App">
+      <FirstComponent/>
+      <SecondComponent/>
+      <ThirdComponent/>
+    </div>
+  );
+}
 
-- React, JSX, ES6, TypeScript and Flow syntax support.
-- Language extras beyond ES6 like the object spread operator.
-- Autoprefixed CSS, so you don’t need `-webkit-` or other prefixes.
-- A fast interactive unit test runner with built-in support for coverage reporting.
-- A live development server that warns about common mistakes.
-- A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps.
-- An offline-first [service worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers) and a [web app manifest](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/), meeting all the [Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) criteria. (_Note: Using the service worker is opt-in as of `react-scripts@2.0.0` and higher_)
-- Hassle-free updates for the above tools with a single dependency.
+export default App;
+```
 
-Check out [this guide](https://github.com/nitishdayal/cra_closer_look) for an overview of how these tools fit together.
+FirstComponent.js
 
-The tradeoff is that **these tools are preconfigured to work in a specific way**. If your project needs more customization, you can ["eject"](https://facebook.github.io/create-react-app/docs/available-scripts#npm-run-eject) and customize it, but then you will need to maintain this configuration.
+```
+function FirstComponent() {
+  return (
+    <div>
+      I am first component
+    </div>
+  );
+}
 
-## Popular Alternatives
+export default FirstComponent;
+```
 
-Create React App is a great fit for:
+SecondComponent.js
 
-- **Learning React** in a comfortable and feature-rich development environment.
-- **Starting new single-page React applications.**
-- **Creating examples** with React for your libraries and components.
+```
+function SecondComponent() {
+  return (
+    <div>
+      I am second component
+    </div>
+  );
+}
 
-Here are a few common cases where you might want to try something else:
+export default SecondComponent;
+```
 
-- If you want to **try React** without hundreds of transitive build tool dependencies, consider [using a single HTML file or an online sandbox instead](https://reactjs.org/docs/try-react.html).
+ThirdComponent.js
 
-- If you need to **integrate React code with a server-side template framework** like Rails, Django or Symfony, or if you’re **not building a single-page app**, consider using [nwb](https://github.com/insin/nwb), or [Neutrino](https://neutrino.js.org/) which are more flexible. For Rails specifically, you can use [Rails Webpacker](https://github.com/rails/webpacker). For Symfony, try [Symfony's webpack Encore](https://symfony.com/doc/current/frontend/encore/reactjs.html).
+```
+function ThirdComponent() {
+  return (
+    <div>
+      I am third component
+    </div>
+  );
+}
 
-- If you need to **publish a React component**, [nwb](https://github.com/insin/nwb) can [also do this](https://github.com/insin/nwb#react-components-and-libraries), as well as [Neutrino's react-components preset](https://neutrino.js.org/packages/react-components/).
+export default ThirdComponent;
+```
 
-- If you want to do **server rendering** with React and Node.js, check out [Next.js](https://nextjs.org/) or [Razzle](https://github.com/jaredpalmer/razzle). Create React App is agnostic of the backend, and only produces static HTML/JS/CSS bundles.
+For preview and inspecting `FirstComponent`, `SecondComponent` and `ThirdComponent`, create ComponentPreviews.js:
 
-- If your website is **mostly static** (for example, a portfolio or a blog), consider using [Gatsby](https://www.gatsbyjs.org/) or [Next.js](https://nextjs.org/). Unlike Create React App, Gatsby pre-renders the website into HTML at build time. Next.js supports both server rendering and pre-rendering.
+ComponentPreviews.js
 
-- Finally, if you need **more customization**, check out [Neutrino](https://neutrino.js.org/) and its [React preset](https://neutrino.js.org/packages/react/).
+```
+import { Previews, ComponentPreview } from "@haulmont/react-ide-toolbox";
+import FirstComponent from "./FirstComponent";
+import SecondComponent from "./SecondComponent";
+import ThirdComponent from "./ThirdComponent";
 
-All of the above tools can work with little to no configuration.
+function ComponentPreviews() {
+  return (
+    <Previews>
+      <ComponentPreview path="/FirstComponent">
+        <FirstComponent />
+      </ComponentPreview>
+      <ComponentPreview path="/SecondComponent">
+        <SecondComponent />
+      </ComponentPreview>
+      <ComponentPreview path="/ThirdComponent">
+        <ThirdComponent />
+      </ComponentPreview>
+    </Previews>
+  );
+};
 
-If you prefer configuring the build yourself, [follow this guide](https://reactjs.org/docs/add-react-to-an-existing-app.html).
+export default ComponentPreviews;
+```
 
-## React Native
+Wrap App component into DevSupport component, and set ComponentPreviews:
 
-Looking for something similar, but for React Native?<br>
-Check out [Expo CLI](https://github.com/expo/expo-cli).
+index.js:
 
-## Contributing
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { DevSupport } from "@haulmont/react-ide-toolbox";
+import ComponentPreviews from "./ComponentPreviews";
 
-We'd love to have your helping hand on `create-react-app`! See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
+ReactDOM.render(
+  <React.StrictMode>
+    <DevSupport
+      ComponentPreviews={<ComponentPreviews/>}
+    >
+      <App />
+    </DevSupport>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
 
-## Supporting Create React App
+Now, IntelliJ IDEA tools ready to inspect `FirstComponent`, `SecondComponent` and `ThirdComponent`
 
-Create React App is a community maintained project and all contributors are volunteers. If you'd like to support the future development of Create React App then please consider donating to our [Open Collective](https://opencollective.com/create-react-app).
+### DevSupport Component
 
-## Credits
+`DevSupport` component export form `@haulmont/create-react-app` package. It's purpose is wrapping root react component for working IntelliJ IDEA tools. `DevSupport` component doesn't have any side effects, and your application will be work as usual after wrapping. `DevSupport` has 2 properties:
 
-This project exists thanks to all the people who [contribute](CONTRIBUTING.md).<br>
-<a href="https://github.com/facebook/create-react-app/graphs/contributors"><img src="https://opencollective.com/create-react-app/contributors.svg?width=890&button=false" /></a>
+`ComponentPreviews` - this property await JSX tree value, which wrapped into [Previews](#previews-component) component (look [using example](#using-example))
 
-Thanks to [Netlify](https://www.netlify.com/) for hosting our documentation.
+`useInitialHook` - hook, which executed for init something. It could be hook with login operation for example. This hook must return status object `{loading: boolean, error: boolean}`.
 
-## Acknowledgements
+Example:
 
-We are grateful to the authors of existing related projects for their ideas and collaboration:
+```
+const useLogin = () => {
+  const [status, setStatus] = useState({
+    loading: true,
+    error: false
+  });
 
-- [@eanplatter](https://github.com/eanplatter)
-- [@insin](https://github.com/insin)
-- [@mxstbr](https://github.com/mxstbr)
+  useEffect(() => {
+    const login = "admin";
+    const password = "admin";
+    login(login, password)
+    .then(() => {
+        setStatus({
+          error: false,
+          loading: false
+        });
+      })
+    .catch(() => {
+        setStatus({
+          loading: false,
+          error: true
+        });
+      });
+  }, []);
+  return status;
+};
+
+```
+
+### Previews Component
+
+`Previews` component export form `@haulmont/create-react-app` package. It's purpose is wrapping JSX tree (look [using example](#using-example)), which will be passed to `ComponentPreviews` property of [DevSupport](#devsupport-component) component. it is necessary to work of IntelliJ IDEA tools.
+
+### ComponentPreview Component
+
+`ComponentPreview` component export form `@haulmont/create-react-app` package. It's purpose is wrapping component to preview and inspect it (look [using example](#using-example)). `ComponentPreview` has 2 properties:
+
+`path` - this property await string value and this value must be unique among other `ComponentPreview` components.
+
+`propsEditInfo` - this property await object value with structure: `{constrolType, data}`. Is needed for working properties panel editor of IntelliJ IDEA tools.
+
+## Modifying existing create-react-app application
+
+If you already have react application, which created with original `create-react-app` package, you can also using IntelliJ IDEA tools abilities. For theese you need to do next:
+
+1. remove `react-scripts` npm package from your project and install `@haulmont/react-scripts`
+2. install `@haulmont/react-ide-toolbox` to your project
+3. add next markup to head's inner of `index.html` project's template:
+
+```
+<% if (htmlWebpackPlugin.options.isReactIdeDevmode) { %>
+    <script src="%PUBLIC_URL%/static/js/devtools-no-server.js"></script>
+<% } %>
+```
+
+example:
+
+index.html (before):
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+index.html (after):
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <% if (htmlWebpackPlugin.options.isReactIdeDevmode) { %>
+      <script src="%PUBLIC_URL%/static/js/devtools-no-server.js"></script>
+    <% } %>
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+4. do all steps [from here](#using-intellij-idea-tools-abilities)
 
 ## License
 
