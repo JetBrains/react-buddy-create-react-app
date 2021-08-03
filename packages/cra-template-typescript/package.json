@@ -10,7 +10,7 @@
   "description": "The base TypeScript template for Create React App.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/Haulmont/create-react-app.git",
     "directory": "packages/cra-template-typescript"
   },
   "license": "MIT",
@@ -18,10 +18,13 @@
     "node": ">=14"
   },
   "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
+    "url": "https://github.com/Haulmont/create-react-app/issues"
   },
   "files": [
     "template",
     "template.json"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
