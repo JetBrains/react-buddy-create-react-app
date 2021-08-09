@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { useInitial } from './dev/hook';
+import { ComponentPreviews } from './dev/previews';
+import { DevSupport } from '@haulmont/react-ide-toolbox';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DevSupport
+      ComponentPreviews={<ComponentPreviews />}
+      useInitialHook={useInitial}
+    >
+      <App />
+    </DevSupport>
   </React.StrictMode>,
   document.getElementById('root')
 );
