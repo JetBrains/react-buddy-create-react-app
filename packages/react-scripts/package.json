@@ -1,6 +1,6 @@
 {
   "name": "@haulmont/react-scripts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -65,6 +65,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "less": "^3.13.1",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
