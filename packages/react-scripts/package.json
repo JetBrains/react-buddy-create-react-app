@@ -28,7 +28,7 @@
   },
   "types": "./lib/react-app.d.ts",
   "dependencies": {
-    "@babel/core": "7.12.3",
+    "@babel/core": "7.15.0",
     "@haulmont/react-ide-devtools": "^1.0.0",
     "@haulmont/jmix-server-mock": "^1.0.0-next.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
