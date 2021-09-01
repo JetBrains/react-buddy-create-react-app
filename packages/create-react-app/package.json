@@ -1,13 +1,13 @@
 {
-  "name": "create-react-app",
-  "version": "5.0.0",
+  "name": "create-react-buddy-app",
+  "version": "1.0.0",
   "keywords": [
     "react"
   ],
   "description": "Create React apps with no build configuration.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Haulmont/create-react-app.git",
+    "url": "https://github.com/react-buddy/create-react-app.git",
     "directory": "packages/create-react-app"
   },
   "license": "MIT",
@@ -15,14 +15,14 @@
     "node": ">=14"
   },
   "bugs": {
-    "url": "https://github.com/Haulmont/create-react-app/issues"
+    "url": "https://github.com/react-buddy/create-react-app/issues"
   },
   "files": [
     "index.js",
     "createReactApp.js"
   ],
   "bin": {
-    "haulmont-create-react-app": "./index.js"
+    "create-react-buddy-app": "./index.js"
   },
   "scripts": {
     "test": "cross-env FORCE_COLOR=true jest"
