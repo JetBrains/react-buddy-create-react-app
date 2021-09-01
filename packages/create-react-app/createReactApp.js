@@ -161,10 +161,10 @@ function init() {
           npmPackages: [
             'react',
             'react-dom',
-            '@haulmont/react-scripts',
-            '@haulmont/react-ide-toolbox',
+            '@react-buddy/react-scripts',
+            '@react-buddy/ide-toolbox',
           ],
-          npmGlobalPackages: ['@haulmont/create-react-app'],
+          npmGlobalPackages: ['create-react-buddy-app'],
         },
         {
           duplicates: true,
@@ -399,7 +399,7 @@ function run(
     const allDependencies = [
       'react',
       'react-dom',
-      '@haulmont/react-ide-toolbox',
+      '@react-buddy/ide-toolbox',
       packageToInstall,
     ];
 
@@ -543,7 +543,7 @@ function run(
 }
 
 function getInstallPackage(version, originalDirectory) {
-  let packageToInstall = '@haulmont/react-scripts';
+  let packageToInstall = '@react-buddy/react-scripts';
   const validSemver = semver.valid(version);
   if (validSemver) {
     packageToInstall += `@${validSemver}`;
@@ -593,7 +593,7 @@ function getInstallPackage(version, originalDirectory) {
 }
 
 function getTemplateInstallPackage(template, originalDirectory) {
-  let templateToInstall = '@haulmont/cra-template';
+  let templateToInstall = '@react-buddy/cra-template';
   if (template) {
     if (template.match(/^file:/)) {
       templateToInstall = `file:${path.resolve(
