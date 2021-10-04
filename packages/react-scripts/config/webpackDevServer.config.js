@@ -15,13 +15,11 @@ const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 const paths = require('./paths');
 const getHttpsConfig = require('./getHttpsConfig');
-const jmixServerMock = require('@haulmont/jmix-server-mock');
 
 const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
-const jmixMockGraphql = process.env.JMIX_SERVER_MOCK_GRAPHQL;
 
 module.exports = function (proxy, allowedHost) {
   const disableFirewall =
@@ -116,12 +114,6 @@ module.exports = function (proxy, allowedHost) {
       // middlewares before `redirectServedPath` otherwise will not have any effect
       // This lets us fetch source contents from webpack for the error overlay
       devServer.app.use(evalSourceMapMiddleware(devServer));
-
-      if (jmixMockGraphql) {
-        jmixServerMock.createServer(jmixMockGraphql).then(({expressApp: mockingApp}) => {
-          app.use("/", mockingApp)
-        });
-      }
 
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
