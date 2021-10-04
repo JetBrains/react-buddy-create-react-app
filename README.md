@@ -1,4 +1,4 @@
-# Haulmont Create React App
+# Create React Buddy App
 
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
 

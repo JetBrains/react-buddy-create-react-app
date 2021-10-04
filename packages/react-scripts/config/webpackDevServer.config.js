@@ -16,18 +16,13 @@ const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 const paths = require('./paths');
 const getHttpsConfig = require('./getHttpsConfig');
-const jmixServerMock = require('@haulmont/jmix-server-mock');
 
 const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/sockjs-node'
 const sockPort = process.env.WDS_SOCKET_PORT;
-const jmixMockGraphql = process.env.JMIX_SERVER_MOCK_GRAPHQL;
 
 module.exports = function (proxy, allowedHost) {
-  if (jmixMockGraphql) {
-    proxy = undefined;
-  }
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -122,12 +117,6 @@ module.exports = function (proxy, allowedHost) {
       app.use(evalSourceMapMiddleware(server));
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware());
-
-      if (jmixMockGraphql) {
-        jmixServerMock.createServer(jmixMockGraphql).then(({expressApp: mockingApp}) => {
-          app.use("/", mockingApp)
-        });
-      }
 
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
