@@ -7,7 +7,7 @@ module.exports = function (webpackEnv) {
   const craConfig = webpackConfig(webpackEnv);
   const { plugins } = craConfig;
   const [htmlWebpackPlugin] = plugins;
-  htmlWebpackPlugin.options.isReactIdeDevmode = isReactIdeDevmode;
+  htmlWebpackPlugin.userOptions.isReactIdeDevmode = isReactIdeDevmode;
 
   if (isReactIdeDevmode) {
     const pathToReactDevtoolsScript = require.resolve(

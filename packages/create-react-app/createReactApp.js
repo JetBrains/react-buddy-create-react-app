@@ -193,14 +193,6 @@ function init() {
     );
     process.exit(1);
   }
-  createApp(
-    projectName,
-    program.verbose,
-    program.scriptsVersion,
-    program.template,
-    program.useNpm,
-    program.usePnp
-  );
 
   // We first check the registry directly via the API, and if that fails, we try
   // the slower `npm view [package] version` command.
