@@ -8,10 +8,15 @@ import {
 
 export default () => (
   <Palette>
-    <Category name="Text">
-      <Component name="Hello message">
+    <Category name="HTML">
+      <Component name="a">
+        <Variant requiredParams={['href']}>
+          <a>Link</a>
+        </Variant>
+      </Component>
+      <Component name="button">
         <Variant>
-          <span> Hello, Create React Buddy App! </span>
+          <button>Button</button>
         </Variant>
       </Component>
     </Category>
