@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { useInitial } from './dev/hook';
-import { ComponentPreviews } from './dev/previews';
+import { useInitial, ComponentPreviews } from './dev';
 import { DevSupport } from '@react-buddy/ide-toolbox';
 
 ReactDOM.render(
   <React.StrictMode>
     <DevSupport
-      ComponentPreviews={<ComponentPreviews />}
+      ComponentPreviews={ComponentPreviews}
       useInitialHook={useInitial}
     >
       <App />
