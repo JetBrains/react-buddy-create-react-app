@@ -1,6 +1,6 @@
 {
   "name": "@react-buddy/react-scripts",
-  "version": "5.0.0-dev.0",
+  "version": "5.0.0",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
-    "@react-buddy/ide-devtools": "^1.0.2",
+    "@react-buddy/ide-devtools": "^1.1.0",
     "@svgr/webpack": "^5.5.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
