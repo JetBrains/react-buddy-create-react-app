@@ -6,7 +6,7 @@ import {
   Palette,
 } from '@react-buddy/ide-toolbox';
 
-export default () => (
+export const PaletteTree = () => (
   <Palette>
     <Category name="HTML">
       <Component name="a">
